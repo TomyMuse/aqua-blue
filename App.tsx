@@ -68,6 +68,9 @@ const App: React.FC = () => {
         <Features />
         <InstallationGallery />
         
+        {/* Nueva Sección de Precios */}
+        <Pricing onSelectPlan={handleSelectPlan} />
+        
         <section className="py-32 bg-slate-950 overflow-hidden relative">
           <div className="absolute inset-0 bg-water-gradient opacity-5"></div>
           <div className="container mx-auto px-6 relative z-10">
@@ -88,9 +91,6 @@ const App: React.FC = () => {
           </div>
         </section>
         
-        {/* Nueva Sección de Precios */}
-        <Pricing onSelectPlan={handleSelectPlan} />
-
         <ProductDetail />
         <ContactForm />
       </main>
