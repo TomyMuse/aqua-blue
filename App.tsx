@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar.tsx';
 import Hero from './components/Hero.tsx';
 import Features from './components/Features.tsx';
+import InstallationGallery from './components/InstallationGallery.tsx';
 import Pricing from './components/Pricing.tsx';
 import SubscriptionModal from './components/SubscriptionModal.tsx';
 import ProductDetail from './components/ProductDetail.tsx';
@@ -65,6 +66,7 @@ const App: React.FC = () => {
       <main className="flex-grow relative z-10">
         <Hero scrollProgress={scrollProgress} />
         <Features />
+        <InstallationGallery />
         
         <section className="py-32 bg-slate-950 overflow-hidden relative">
           <div className="absolute inset-0 bg-water-gradient opacity-5"></div>

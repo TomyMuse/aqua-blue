@@ -12,7 +12,7 @@ const Features: React.FC = () => {
           </h2>
           <div className="w-24 h-1.5 bg-sky-500 mx-auto rounded-full"></div>
           <p className="text-xl text-slate-600 font-medium leading-relaxed">
-            Pasar de un sistema tradicional a un <strong>dispenser de agua conectado a la red</strong> elimina la logística de almacenamiento y garantiza agua fresca las 24 horas mediante sistemas de ultrafiltración Aqua Blue.
+            Pasar de un sistema tradicional a un <strong>dispenser de agua conectado a la red</strong> elimina la logística de almacenamiento y garantiza agua fresca las 24 horas mediante sistemas de ultrafiltración <strong className="text-slate-900">Aqua Blue</strong>.
           </p>
         </div>
 

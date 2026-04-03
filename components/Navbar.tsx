@@ -36,6 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenCalculator }) => {
   const navLinks: { name: string; href: string; isExternal?: boolean }[] = [
     { name: 'Inicio', href: '#inicio' },
     { name: 'Características', href: '#caracteristicas' },
+    { name: 'Instalaciones', href: '#instalaciones' },
     { name: 'Producto', href: '#producto' },
     { name: 'Contacto', href: CONTACT_INFO.whatsappLink, isExternal: true },
   ];

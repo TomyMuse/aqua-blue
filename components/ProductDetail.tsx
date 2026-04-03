@@ -15,7 +15,7 @@ const ProductDetail: React.FC = () => {
                 Diseño que Refleja <br /> <span className="text-sky-600">Pureza Absoluta.</span>
               </h2>
               <p className="text-xl text-slate-600 leading-relaxed font-medium">
-                Nuestros dispensers Aqua Blue combinan una estética moderna con la tecnología de filtrado más avanzada del mercado. Olvidate de la logística de bidones y disfrutá de agua fresca siempre.
+                Nuestros dispensers <strong className="text-slate-900">Aqua Blue</strong> combinan una estética moderna con la tecnología de filtrado más avanzada del mercado. Olvidate de la logística de bidones y disfrutá de agua fresca siempre.
               </p>
             </div>
 

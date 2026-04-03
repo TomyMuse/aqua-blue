@@ -98,7 +98,7 @@ const SavingsCalculator: React.FC<SavingsCalculatorProps> = ({ isOpen, onToggle 
               {/* Card Azul: La Solución */}
               <div className="bg-sky-50 p-4 rounded-xl border border-sky-100 relative overflow-hidden flex flex-col justify-between">
                 <div>
-                    <p className="text-[10px] text-sky-700 font-black uppercase tracking-widest mb-1">Costo Aqua Blue</p>
+                    <p className="text-[10px] text-sky-700 font-black uppercase tracking-widest mb-1">Costo <strong className="text-sky-900">Aqua Blue</strong></p>
                     <p className="text-xl font-black text-sky-600">
                     ${SERVICE_PRICE.toLocaleString('es-AR')}
                     </p>
@@ -146,7 +146,7 @@ const SavingsCalculator: React.FC<SavingsCalculatorProps> = ({ isOpen, onToggle 
                   <div>
                     <p className="text-slate-800 font-black text-lg">Priorizá tu Calidad de Vida</p>
                     <p className="text-xs text-slate-500 mt-1 leading-relaxed px-2">
-                        Quizás el costo es similar, pero con Aqua Blue ganás <strong>agua ilimitada</strong> para cocinar, beber y lavar frutas sin racionar bidones.
+                        Quizás el costo es similar, pero con <strong className="text-slate-900">Aqua Blue</strong> ganás <strong>agua ilimitada</strong> para cocinar, beber y lavar frutas sin racionar bidones.
                     </p>
                   </div>
                 </div>
