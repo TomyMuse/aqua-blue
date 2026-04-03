@@ -9,9 +9,9 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ scrollProgress }) => {
-  const handleScrollToDetails = (e: React.MouseEvent) => {
+  const handleScrollToSection = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    const element = document.getElementById('caracteristicas');
+    const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -53,9 +53,8 @@ const Hero: React.FC<HeroProps> = ({ scrollProgress }) => {
 
               <div className="flex flex-col sm:flex-row gap-5 pt-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
                 <a 
-                  href={CONTACT_INFO.whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#planes"
+                  onClick={(e) => handleScrollToSection(e, 'planes')}
                   className="bg-slate-900 hover:bg-black text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all shadow-xl hover:shadow-sky-200 hover:-translate-y-1 flex items-center justify-center space-x-3"
                 >
                   <span>Pedir presupuesto</span>
@@ -63,7 +62,7 @@ const Hero: React.FC<HeroProps> = ({ scrollProgress }) => {
                 </a>
                 <a 
                   href="#caracteristicas"
-                  onClick={handleScrollToDetails}
+                  onClick={(e) => handleScrollToSection(e, 'caracteristicas')}
                   className="bg-white/70 hover:bg-white text-slate-900 px-10 py-5 rounded-2xl font-bold text-lg transition-all border border-slate-200 backdrop-blur-sm flex items-center justify-center text-center cursor-pointer"
                 >
                   Ver Detalles

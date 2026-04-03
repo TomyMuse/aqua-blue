@@ -192,10 +192,16 @@ const SavingsCalculator: React.FC<SavingsCalculatorProps> = ({ isOpen, onToggle 
             {/* CTA Section */}
             <div>
                 <a 
-                href={CONTACT_INFO.whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-slate-900 hover:bg-black text-white py-4 rounded-xl font-bold transition-all shadow-xl shadow-slate-900/20 active:scale-95 flex items-center justify-center space-x-2 group hover:-translate-y-1"
+                  href="#planes"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onToggle(false);
+                    const element = document.getElementById('planes');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="w-full bg-slate-900 hover:bg-black text-white py-4 rounded-xl font-bold transition-all shadow-xl shadow-slate-900/20 active:scale-95 flex items-center justify-center space-x-2 group hover:-translate-y-1"
                 >
                 <span>Quiero dejar de usar bidones</span>
                 <ArrowRight className="w-4 h-4 text-sky-400 group-hover:translate-x-1 transition-transform" />

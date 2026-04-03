@@ -106,10 +106,8 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenCalculator }) => {
             </a>
           ))}
           <a 
-            href={CONTACT_INFO.whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setIsMobileMenuOpen(false)}
+            href="#planes"
+            onClick={(e) => handleNavClick(e, '#planes')}
             className="block w-full bg-slate-900 text-white py-4 rounded-xl font-bold shadow-lg uppercase tracking-widest text-xs text-center"
           >
             Pedir Presupuesto
