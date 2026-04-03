@@ -31,7 +31,11 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, onClose, 
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Construir mensaje de WhatsApp
-    const methodText = formData.paymentMethod === 'mercadopago' ? 'Link de MercadoPago' : formData.paymentMethod === 'transfer' ? 'Datos de Transferencia' : 'Tarjeta';
+    const methodText = formData.paymentMethod === 'mercadopago' 
+      ? 'Link de Mercado Pago' 
+      : formData.paymentMethod === 'transfer' 
+        ? 'Efectivo o Transferencia' 
+        : 'Tarjeta de Débito/Crédito';
     
     const message = `Hola Aqua Blue! 👋 Quiero suscribirme al *${selectedPlan?.name}* ($${selectedPlan?.price}/mes).
     
@@ -151,7 +155,22 @@ Teléfono: ${formData.phone}
                   <span className="font-bold text-sm text-slate-700">Mercado Pago</span>
                 </label>
 
-                <label className={`cursor-pointer border rounded-xl p-4 flex items-center gap-3 transition-all ${formData.paymentMethod === 'card' ? 'border-sky-500 bg-sky-50 ring-1 ring-sky-500' : 'border-slate-200 hover:border-slate-300'}`}>
+                <label className={`cursor-pointer border rounded-xl p-4 flex items-center gap-3 transition-all ${formData.paymentMethod === 'transfer' ? 'border-sky-500 bg-sky-50 ring-1 ring-sky-500' : 'border-slate-200 hover:border-slate-300'}`}>
+                  <input 
+                    type="radio" 
+                    name="payment" 
+                    value="transfer" 
+                    checked={formData.paymentMethod === 'transfer'}
+                    onChange={() => setFormData({...formData, paymentMethod: 'transfer'})}
+                    className="hidden" 
+                  />
+                  <div className="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center bg-white">
+                    {formData.paymentMethod === 'transfer' && <div className="w-2.5 h-2.5 rounded-full bg-sky-500" />}
+                  </div>
+                  <span className="font-bold text-sm text-slate-700">Efectivo / Transferencia</span>
+                </label>
+
+                <label className={`cursor-pointer border rounded-xl p-4 flex items-center gap-3 transition-all ${formData.paymentMethod === 'card' ? 'border-sky-500 bg-sky-50 ring-1 ring-sky-500' : 'border-slate-200 hover:border-slate-300'} sm:col-span-2`}>
                   <input 
                     type="radio" 
                     name="payment" 
@@ -181,14 +200,14 @@ Teléfono: ${formData.phone}
                   </>
                 ) : (
                   <>
-                    <span>Confirmar y Pagar</span>
+                    <span>Confirmar Suscripción</span>
                     <ArrowRight className="w-5 h-5" />
                   </>
                 )}
               </button>
               <div className="flex items-center justify-center gap-2 mt-4 text-slate-400">
-                <Lock className="w-3 h-3" />
-                <span className="text-[10px] font-bold uppercase tracking-widest">Pago 100% Seguro vía Mercado Pago</span>
+                <ShieldCheck className="w-3 h-3" />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Suscripción Protegida y Segura</span>
               </div>
             </div>
 
