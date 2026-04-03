@@ -72,8 +72,8 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                 onClick={() => onSelectPlan(plan.id)}
                 className={`w-full py-4 rounded-xl font-black text-lg transition-all active:scale-95 shadow-lg ${
                   plan.recommended
-                    ? 'bg-slate-900 text-white hover:bg-black hover:shadow-sky-500/25'
-                    : 'bg-white text-slate-900 border-2 border-slate-200 hover:border-slate-900'
+                    ? 'bg-red-600 text-white hover:bg-red-700 hover:shadow-red-500/25'
+                    : 'bg-white text-red-600 border-2 border-red-600 hover:bg-red-50'
                 }`}
               >
                 Suscribirme Ahora

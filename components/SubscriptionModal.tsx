@@ -11,6 +11,8 @@ interface SubscriptionModalProps {
 
 const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, onClose, planId }) => {
   const [step, setStep] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [showQuantity, setShowQuantity] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -22,6 +24,7 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, onClose, 
   if (!isOpen || !planId) return null;
 
   const selectedPlan = PLANS.find(p => p.id === planId);
+  const totalPrice = (selectedPlan?.price || 0) * quantity;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +40,10 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, onClose, 
         ? 'Efectivo o Transferencia' 
         : 'Tarjeta de Débito/Crédito';
     
-    const message = `Hola Aqua Blue! 👋 Quiero suscribirme al *${selectedPlan?.name}* ($${selectedPlan?.price}/mes).
+    const message = `Hola Aqua Blue! 👋 Quiero suscribirme al *${selectedPlan?.name}*.
+    
+🔢 *Cantidad:* ${quantity} ${quantity > 1 ? 'unidades' : 'unidad'}
+💰 *Total Mensual:* $${totalPrice.toLocaleString('es-AR')}
     
 📋 *Mis Datos:*
 Nombre: ${formData.name}
@@ -75,19 +81,61 @@ Teléfono: ${formData.phone}
           <form onSubmit={handleSubmit} className="space-y-6">
             
             {/* Price Summary */}
-            <div className="bg-sky-50 rounded-2xl p-4 flex justify-between items-center border border-sky-100">
-               <div className="flex items-center gap-3">
-                 <div className="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white">
-                   <ShieldCheck className="w-5 h-5" />
+            <div className="bg-sky-50 rounded-2xl p-4 flex flex-col gap-4 border border-sky-100">
+               <div className="flex justify-between items-center">
+                 <div className="flex items-center gap-3">
+                   <div className="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white">
+                     <ShieldCheck className="w-5 h-5" />
+                   </div>
+                   <div>
+                     <p className="text-xs font-bold uppercase text-sky-700 tracking-wider">Total Mensual</p>
+                     <p className="text-2xl font-black text-slate-900">${totalPrice.toLocaleString('es-AR')}</p>
+                   </div>
                  </div>
-                 <div>
-                   <p className="text-xs font-bold uppercase text-sky-700 tracking-wider">Total Mensual</p>
-                   <p className="text-2xl font-black text-slate-900">${selectedPlan?.price.toLocaleString('es-AR')}</p>
+                 <div className="text-right">
+                   <p className="text-[10px] text-slate-500 font-semibold uppercase">Instalación</p>
+                   <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">BONIFICADA</span>
                  </div>
                </div>
-               <div className="text-right">
-                 <p className="text-[10px] text-slate-500 font-semibold uppercase">Instalación</p>
-                 <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">BONIFICADA</span>
+
+               <div className="flex items-center justify-between pt-3 border-t border-sky-200/50">
+                 {!showQuantity ? (
+                   <button 
+                     type="button"
+                     onClick={() => {
+                       setShowQuantity(true);
+                       setQuantity(2);
+                     }}
+                     className="w-full text-[10px] font-black uppercase tracking-widest text-sky-600 hover:text-sky-700 transition-colors flex items-center justify-center gap-1 py-1"
+                   >
+                     <span>Necesito más equipos</span>
+                     <ArrowRight className="w-3 h-3" />
+                   </button>
+                 ) : (
+                   <div className="flex items-center justify-between w-full">
+                     <div className="flex items-center gap-2">
+                       <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Equipos:</span>
+                       <div className="flex items-center bg-white rounded-lg border border-sky-200 overflow-hidden">
+                         <button 
+                           type="button"
+                           onClick={() => {
+                             const newQty = Math.max(1, quantity - 1);
+                             setQuantity(newQty);
+                             if (newQty === 1) setShowQuantity(false);
+                           }}
+                           className="px-3 py-1 hover:bg-sky-50 text-sky-600 font-bold transition-colors"
+                         >-</button>
+                         <span className="px-3 py-1 font-black text-slate-900 border-x border-sky-100 min-w-[40px] text-center">{quantity}</span>
+                         <button 
+                           type="button"
+                           onClick={() => setQuantity(quantity + 1)}
+                           className="px-3 py-1 hover:bg-sky-50 text-sky-600 font-bold transition-colors"
+                         >+</button>
+                       </div>
+                     </div>
+                     <span className="text-[10px] font-bold text-sky-500 uppercase">Ajustá la cantidad</span>
+                   </div>
+                 )}
                </div>
             </div>
 
